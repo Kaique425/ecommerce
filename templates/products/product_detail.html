@@ -1,11 +1,10 @@
 {% extends 'products/main.html' %}
 
     {% block content %}
-
+         <a href="{% url 'product:list' %}">Voltar</a>   
         <h1>Product Detail</h1>
         <p>{{product.name}}</p>
         <p>{{product.price}}</p>
         <p>{{product.description}}</p>
         <p>{{product.is_available}}</p>
-
     {% endblock %}

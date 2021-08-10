@@ -1,5 +1,17 @@
 {% block content %}
-    <nav>
-        barra de navegação
+    <nav class="nav">
+      <div>
+        <form  method="GET">
+            <input class="searchbar" type="text" name="searchbar" value="{{searchbar}}" placeholder="Procure por produtos...">
+            <input class="searchbar-button" type="submit" value="Procurar">
+        </form>
+      </div>
+        <div>
+            <ul class="topic-list">
+                <li class="barindex" >Sobre</li>
+                <li class="barindex" >Produto</li>
+            </ul>
+        </div>
     </nav>
+
 {% endblock %}
