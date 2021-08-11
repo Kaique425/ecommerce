@@ -2,9 +2,28 @@
 
     {% block content %}
     <h1>Product List</h1>
-    {% for p in product %}
-        <a href="{% url 'product:detail' p.id %}"><p>{{p.name}}</p></a>
-        <p>{{p.price}}</p>
-        <p>{{p.is_available}}</p>
-    {% endfor %}
+        <div class="main-container">
+            {% for p in product %}
+                <div class="product-card">
+                    {% if p.product_image %}
+                    <div>
+                        <img class="product-image" src="{{p.product_image.url}}" alt="">
+                    </div>
+                    {% else %}
+                        <div>
+                            <p>Não há imagem</p>                   
+                        </div>
+                    {% endif %}
+                    <div>
+                        <a href="{% url 'product:detail' p.id %}"><p>{{p.name}}</p></a>
+                    </div>
+                    <div>
+                          <p>{{p.price}}</p>
+                    </div>
+                    <div>
+                        <p>{{p.is_available}}</p>
+                    </div>       
+                </div>
+            {% endfor %}
+        </div>
     {% endblock %}
