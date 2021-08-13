@@ -6,6 +6,9 @@
             {% for p in product %}
                 <div class="product-card">
                     {% if p.product_image %}
+                    <div class="product-card-title">
+                        <a href="{% url 'product:detail' p.id %}">{{p.name}}</a>
+                    </div>
                     <div>
                         <img class="product-image" src="{{p.product_image.url}}" alt="">
                     </div>
@@ -15,13 +18,10 @@
                         </div>
                     {% endif %}
                     <div>
-                        <a href="{% url 'product:detail' p.id %}"><p>{{p.name}}</p></a>
-                    </div>
-                    <div>
                           <p>{{p.price}}</p>
                     </div>
-                    <div>
-                        <p>{{p.is_available}}</p>
+                    <div style="background-color: green;">
+                    <a href="#">Adicionar ao carrinho!</a>
                     </div>       
                 </div>
             {% endfor %}
