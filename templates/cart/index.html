@@ -1,1 +1,9 @@
 <h1>Meu carrinho</h1>
+
+{% for item in cart %}
+{% with product=item.product %}
+    <h1>{{product.description}}</h1>
+        <img src="{{ product.product_image.url }}" alt="">
+    <h1>{{cart.get_total_price}}</h1>
+{% endwith %}
+{% endfor %}

@@ -7,13 +7,16 @@ from .models import Product
 
 class ProductsDetailView(DetailView):
     model = Product
-    context_object_name = "product"
-
+    context_object_name = "product" 
+    
+    def get_slug_field(self):
+        return self.slug_field
+    
 
 class ProductListView(ListView):
     model = Product
     context_object_name = "product"
-    
+
     def get_queryset(self):
         return Product.objects.filter(is_available=True)
 

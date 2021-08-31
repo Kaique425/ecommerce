@@ -7,7 +7,7 @@
                 <div class="product-card">
                     {% if p.product_image %}
                     <div class="product-card-title">
-                        <a href="{% url 'product:detail' p.id %}">{{p.name}}</a>
+                        <a href="{% url 'product:detail' p.slug %}">{{p.name}}</a>
                     </div>
                     <div>
                         <img class="product-image" src="{{p.product_image.url}}" alt="">
@@ -21,7 +21,7 @@
                           <p>{{p.price}}</p>
                     </div>
                     <div style="background-color: green;">
-                    <a href="#">Adicionar ao carrinho!</a>
+                    <a href="{% url 'cart:add' p.id %}">Adicionar ao carrinho!</a>
                     </div>       
                 </div>
             {% endfor %}
