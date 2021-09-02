@@ -1,9 +1,47 @@
+{% extends "products/main.html"%}
 <h1>Meu carrinho</h1>
 
-{% for item in cart %}
-{% with product=item.product %}
-    <h1>{{product.description}}</h1>
-        <img src="{{ product.product_image.url }}" alt="">
-    <h1>{{cart.get_total_price}}</h1>
-{% endwith %}
-{% endfor %}
+
+{% block content %}
+<div class="cart-body-page">
+    <div class="cart-container">
+                <div class="cart-flex-item">
+                    <table class="table">
+                        <thead>
+                            <th>Item</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                        </thead>
+                        {% for item in cart %}
+                            {% with product=item.product %}
+                            <tbody>
+                                <td> 
+                                    <div class="flex-item-product"><div>{{product.name}}</div>
+                                    <div><img class="cart-product-img" src="{{ product.product_image.url }}" alt=""></div></div>
+                                </td>
+                                <td>
+                                    <div> 
+                                        <form action="" method="POST">
+                                             {% csrf_token %} {{form.as_p}} 
+                                        </form> 
+                                             <button>Atualizar</button> 
+                                    </div>
+                                </td>
+                                <td>
+                                    <strong>{{product.price}}</strong>
+                                </td>
+                            </tbody>
+                            {% endwith %}
+                        {% endfor %}
+                    </table>
+                </div>    
+        </div>
+        <div class="checkout-div">
+            <div class="checkout-total_p">
+                <p>Total: <strong>{{cart.get_total_price}}</strong></p>
+            </div>
+            <button class="checkout-button"><strong>Finalizar compra</strong></button>
+        </div> 
+    </div>    
+</div>
+{% endblock %}

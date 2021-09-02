@@ -28,6 +28,7 @@ class Cart:
         if product_id not in self.cart:
             self.cart[str(product_id)] = {"price":str(product.price), "name":str(product.name)}
             self.save(request)
+    
 
     def get_total_price(self):
         return sum(Decimal(item["price"]) for item in self.cart.values())
