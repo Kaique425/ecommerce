@@ -21,7 +21,11 @@
                           <p>{{p.price}}</p>
                     </div>
                     <div style="background-color: green;">
-                    <a href="{% url 'cart:add' p.id %}">Adicionar ao carrinho!</a>
+                        <form action="{% url 'cart:add' p.id %}" method="POST">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <button>Adicionar ao carrinho</button>
+                        </form>
                     </div>       
                 </div>
             {% endfor %}

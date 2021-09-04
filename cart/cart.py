@@ -1,6 +1,7 @@
 from decimal import Decimal
 import copy
 from products.models import Product
+from cart.form import CartAddForm
 
 class Cart:
 
@@ -8,6 +9,7 @@ class Cart:
         if request.session.get('cart') is None:
             request.session['cart'] = {}
         self.cart = request.session['cart']
+        self.session = request.session
 
     def __iter__(self):
         cart = copy.deepcopy(self.cart)
@@ -17,17 +19,28 @@ class Cart:
             cart[str(product.id)]["product"] = product
 
         for item in cart.values():
-            item["price"] = Decimal(item["price"])
+            item['price'] = Decimal(item["price"])
+            item['quantity'] = str(item['quantity'])
+            item['replace_quantity_form'] = CartAddForm( initial={'quantity': item['quantity'], 'override': True})
             yield item
 
-    def save(self, request):
-        request.session.modified = True
+    def save(self):
+        self.session.modified = True
 
-    def add (self, request, product):
+    def add (self, product, quantity=1, override=False):
         product_id = product.id
         if product_id not in self.cart:
-            self.cart[str(product_id)] = {"price":str(product.price), "name":str(product.name)}
-            self.save(request)
+            self.cart[str(product_id)] = {
+                "price":str(product.price), 
+                "quantity":0,
+            }
+            self.save()
+        if override:
+            self.cart[str(product_id)]['quantity'] = quantity
+        
+        else:
+            self.cart[str(product_id)]['quantity'] += quantity
+        self.save()
     
 
     def get_total_price(self):

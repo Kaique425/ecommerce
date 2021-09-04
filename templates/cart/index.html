@@ -21,10 +21,13 @@
                                 </td>
                                 <td>
                                     <div> 
-                                        <form action="" method="POST">
-                                             {% csrf_token %} {{form.as_p}} 
+                                        <form action="{% url 'cart:add' product.id %}" method="POST">
+                                             {% csrf_token %} {{item.replace_quantity_form.as_p}}
+                                             <button type="submit">Atualizar</button> 
                                         </form> 
-                                             <button>Atualizar</button> 
+                                        <form action="" method="DELETE">
+                                            <button type="submit">Remover item</button>
+                                        </form>
                                     </div>
                                 </td>
                                 <td>
@@ -39,7 +42,7 @@
         <div class="checkout-div">
             <div class="checkout-total_p">
                 <p>Total: <strong>{{cart.get_total_price}}</strong></p>
-            </div>
+        </div>
             <button class="checkout-button"><strong>Finalizar compra</strong></button>
         </div> 
     </div>    
