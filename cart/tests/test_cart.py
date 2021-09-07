@@ -35,20 +35,28 @@ class TestCart():
         assert session.modified
         assert session['cart'] == {}
 
-    def test_add_product(self, http_request, session, product, cart):
-        cart.add(http_request, product)
+    def test_add_product(self, session, product, cart):
+        cart.add(product)
 
         assert session['cart'] == {
-            str(product.id): {"price":str(product.price), "name": str(product.name)}
+            str(product.id): {"price":str(product.price), "quantity": 1}
         }
         assert session.modified
 
-    def test_get_total_price_method(self, cart, http_request, product):
+    def test_get_total_price_method(self, cart):
         product_1 = ProductFactory()
         product_2 = ProductFactory()
-        cart.add(http_request, product_1)
-        cart.add(http_request, product_2)
+        cart.add(product_1)
+        cart.add(product_2)
 
         total_price = product_1.price + product_2.price
         assert cart.get_total_price() == total_price
         
+    def test_remove_product(self, cart, product, session):
+        cart.add(product)
+        session.modified = False
+
+        cart.remove(product.id)
+
+        assert session['cart'] == {}
+        assert session.modified

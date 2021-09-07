@@ -20,30 +20,33 @@ class Cart:
 
         for item in cart.values():
             item['price'] = Decimal(item["price"])
-            item['quantity'] = str(item['quantity'])
-            item['replace_quantity_form'] = CartAddForm( initial={'quantity': item['quantity'], 'override': True})
+            item['item_total_price'] = item['price'] * item['quantity']
+            item['replace_quantity_form'] = CartAddForm(  initial={"quantity": item["quantity"], "override": True})
             yield item
-
+            
     def save(self):
         self.session.modified = True
 
-    def add (self, product, quantity=1, override=False):
+    def add (self, product, quantity=1,  override=False):
         product_id = product.id
         if product_id not in self.cart:
             self.cart[str(product_id)] = {
                 "price":str(product.price), 
                 "quantity":0,
             }
-            self.save()
-        if override:
-            self.cart[str(product_id)]['quantity'] = quantity
         
+        if override:
+            self.cart[str(product_id)]["quantity"] += quantity
         else:
-            self.cart[str(product_id)]['quantity'] += quantity
+            self.cart[str(product_id)]["quantity"] += quantity
+        
+        self.save()
+
+    def remove(self,product):
+        product_id = product
+        del self.cart[str(product_id)]
         self.save()
     
 
     def get_total_price(self):
-        return sum(Decimal(item["price"]) for item in self.cart.values())
-
-    
+        return sum(Decimal(item["price"]) * item['quantity'] for item in self.cart.values())

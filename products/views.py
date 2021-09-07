@@ -25,7 +25,7 @@ class ProductListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         searchbar = self.request.GET.get("searchbar") or ''
-        context['form'] = CartAddForm
+        context['form'] = CartAddForm()
         if searchbar:
             context["product"] = context["product"].filter(name__istartswith=searchbar)
         context["searchbar"] = searchbar

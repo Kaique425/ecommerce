@@ -25,13 +25,13 @@
                                              {% csrf_token %} {{item.replace_quantity_form.as_p}}
                                              <button type="submit">Atualizar</button> 
                                         </form> 
-                                        <form action="" method="DELETE">
+                                        <form action="{% url 'cart:remove' product.id %}" method="DELETE">
                                             <button type="submit">Remover item</button>
                                         </form>
                                     </div>
                                 </td>
                                 <td>
-                                    <strong>{{product.price}}</strong>
+                                    <strong>{{item.item_total_price}}</strong>
                                 </td>
                             </tbody>
                             {% endwith %}

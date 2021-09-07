@@ -6,11 +6,11 @@ from .form import CartAddForm
 
 def cart (request):
     cart = Cart(request)
-    context = {'cart':cart, 'form':CartAddForm()}
+    context = {'cart':cart,}
 
     return render(request, 'cart/index.html', context)
 
-def product_add(request, id):
+def add_product(request, id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=id)
     form = CartAddForm(request.POST)
@@ -19,8 +19,12 @@ def product_add(request, id):
         cart.add(
             product=product, 
             quantity=clean_form['quantity'], 
-            override=clean_form['override']
+            override=clean_form['override'],
         )
-    cart.save()
     return redirect('cart:detail')
 
+def remove_product(request, id):
+    cart = Cart(request)
+    cart.remove(id)
+
+    return redirect('cart:detail')
