@@ -20,8 +20,9 @@ def session(http_request):
     return http_request.session
 
 @pytest.fixture
-def cart(http_request):
+def cart(http_request,session):
     cart = Cart(http_request)
+    session.modified = False
     return cart
     
 pytestmark = pytest.mark.django_db
@@ -60,3 +61,10 @@ class TestCart():
 
         assert session['cart'] == {}
         assert session.modified
+
+    def test_remove_product_to_empty_cart(self, cart, product,session):
+        cart.remove(product.id)
+
+        assert session.modified == False
+        assert session['cart'] == {}
+        

@@ -1,42 +1,36 @@
 {% extends "products/main.html"%}
 <h1>Meu carrinho</h1>
 
-
 {% block content %}
 <div class="cart-body-page">
     <div class="cart-container">
                 <div class="cart-flex-item">
-                    <table class="table">
-                        <thead>
-                            <th>Item</th>
-                            <th>Quantidade</th>
-                            <th>Preço</th>
-                        </thead>
                         {% for item in cart %}
                             {% with product=item.product %}
-                            <tbody>
-                                <td> 
-                                    <div class="flex-item-product"><div>{{product.name}}</div>
-                                    <div><img class="cart-product-img" src="{{ product.product_image.url }}" alt=""></div></div>
-                                </td>
-                                <td>
-                                    <div> 
-                                        <form action="{% url 'cart:add' product.id %}" method="POST">
-                                             {% csrf_token %} {{item.replace_quantity_form.as_p}}
-                                             <button type="submit">Atualizar</button> 
-                                        </form> 
+                            <div class="flex-item-row" >    
+                                <div>       
+                                    <div class="flex-item-product">
+                                        <div>{{product.name}}</div>
+                                        <div><img class="cart-product-img" src="{{ product.product_image.url }}" alt=""></div>
+                                    </div>
+                                </div>
+                                <div> 
+                                    <form action="{% url 'cart:add' product.id %}" method="POST">
+                                            {% csrf_token %} {{item.replace_quantity_form.as_p}}
+                                            <button class="row-update-button" type="submit">Atualizar</button> 
+                                    </form> 
+                                    <div>
                                         <form action="{% url 'cart:remove' product.id %}" method="DELETE">
-                                            <button type="submit">Remover item</button>
+                                            <button class="row-remove-button" type="submit">Excluir</button>
                                         </form>
                                     </div>
-                                </td>
-                                <td>
-                                    <strong>{{item.item_total_price}}</strong>
-                                </td>
-                            </tbody>
+                                </div>                                
+                                <div class="flex-item-total-price">
+                                    <strong>R$ {{item.item_total_price}}</strong>
+                                </div>
+                            </div>
                             {% endwith %}
                         {% endfor %}
-                    </table>
                 </div>    
         </div>
         <div class="checkout-div">

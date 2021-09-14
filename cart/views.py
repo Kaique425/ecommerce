@@ -24,7 +24,8 @@ def add_product(request, id):
     return redirect('cart:detail')
 
 def remove_product(request, id):
+    product = get_object_or_404(Product, id=id)
     cart = Cart(request)
-    cart.remove(id)
+    cart.remove(product.id)
 
     return redirect('cart:detail')
