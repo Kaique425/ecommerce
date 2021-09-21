@@ -22,6 +22,7 @@ class Cart:
             item['price'] = Decimal(item["price"])
             item['item_total_price'] = item['price'] * item['quantity']
             item['replace_quantity_form'] = CartAddForm(  initial={"quantity": item["quantity"], "override": True})
+           
             yield item
             
     def save(self):

@@ -229,3 +229,51 @@ body{
 .checkout-total_p p{
     font-size: 30px;
 }
+
+.order-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.order-form{
+    padding: 10px 30px;
+    display: flex;
+    box-shadow: 0px 2px 10px 0px grey; 
+}
+.order-form input,select{
+    border-color: rgb(187, 187, 187);
+    border: none;
+    border-bottom: 2px solid rgb(158, 158, 158);
+    padding: 3px;
+    border-radius: 5px;
+    box-sizing:border-box
+}
+
+.order-resume{
+    box-shadow: 0px 2px 10px 0px grey;
+    display: flex;
+    padding: 0px 20px;
+}
+.order-resume-total{
+    display: flex;
+    justify-content: space-between;   
+}
+.order-resume-items{
+    display: flex;
+    justify-content: space-between;
+}
+.order-form button{
+    padding: 15px 20px;
+    border-radius: 3px;
+    width: 20vw;
+    background-color:#00a621;
+    color: white;
+    border: none;
+}
+.order-form button:hover{
+    background-color:#00921d;
+}
+.order-resume-box{
+    width: 40vw;
+}

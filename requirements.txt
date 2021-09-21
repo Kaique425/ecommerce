@@ -3,7 +3,8 @@ attrs==21.2.0
 coverage==5.5
 Django==3.2.6
 django-autoslug==1.9.8
-django-debug-toolbar
+django-debug-toolbar==3.2.2
+django-localflavor==3.1
 factory-boy==3.2.0
 Faker==8.12.1
 iniconfig==1.1.1
@@ -17,6 +18,7 @@ pytest==6.2.4
 pytest-cov==2.12.1
 pytest-django==4.4.0
 python-dateutil==2.8.2
+python-stdnum==1.16
 pytz==2021.1
 six==1.16.0
 sqlparse==0.4.1

@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #My apps
     'products',
     'cart',
+    'orders',
+    
+    #Third-party apps
     'debug_toolbar',
+    'localflavor'
 ]
 
 MIDDLEWARE = [

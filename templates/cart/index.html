@@ -37,7 +37,7 @@
             <div class="checkout-total_p">
                 <p>Total: <strong>{{cart.get_total_price}}</strong></p>
         </div>
-            <button class="checkout-button"><strong>Finalizar compra</strong></button>
+            <button class="checkout-button" ><a href='{% url "orders:create" %}'><strong>Finalizar compra</strong></a></button>
         </div> 
     </div>    
 </div>
