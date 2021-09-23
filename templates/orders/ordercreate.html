@@ -1,5 +1,5 @@
 {% extends 'products/main.html' %}
-
+    {% load static %}
 {% block content %}
     <h1>Agora falta só algumas informações...</h1>
     <div class="order-container">
@@ -26,4 +26,8 @@
         </div>
     </div>
 
-{% endblock content%}
+{% endblock content %}
+{% block script %}
+    <script src="https://unpkg.com/imask"></script>
+    <script src="{% static 'products/js/order-form.js' %}"></script>
+{% endblock script %}

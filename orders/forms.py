@@ -18,3 +18,7 @@ class OrdersForm(forms.ModelForm):
             'city',
             'compliment',
         ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['postal_code'].widget.attrs.update({'onchange': 'getAddress()'})
