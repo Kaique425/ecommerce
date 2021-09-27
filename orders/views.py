@@ -5,7 +5,7 @@ from django.views.generic import  CreateView
 from cart.cart import Cart
 from orders.models import Item
 
-# Create your views here.
+
 
 class OrderCreate(CreateView):
     form_class = OrdersForm
