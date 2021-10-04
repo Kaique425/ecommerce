@@ -4,7 +4,7 @@
 {% block content %}
 <div class="cart-body-page">
     <div class="cart-container">
-        {% if cart.length > 0 %}
+        {% if cart_len > 0 %}
                 <div class="cart-flex-item">
                     {% for item in cart %}
                                 {% with product=item.product %}

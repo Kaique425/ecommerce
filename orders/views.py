@@ -22,8 +22,8 @@ class OrderCreate(CreateView):
                     price=item['price'],
                     quantity=item['quantity']
                 )
-            return render(self.request, 'orders/order_created.html')
-            
+                cart.clear()
+            return render(self.request, 'orders/order_created.html')     
         return HttpResponseRedirect(resolve('product:list'))
     
     def get_context_data(self, **kwargs):

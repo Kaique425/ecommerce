@@ -49,12 +49,14 @@ class Cart:
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
+            
     
     def clear(self):
         del self.session['cart']
+        self.save()
 
-    def length(self):
-        return len([item for item in self.cart])
+    def __len__(self):
+        return sum([int(item) for item in self.cart])
 
     def get_total_price(self):
         return sum(Decimal(item["price"]) * item['quantity'] for item in self.cart.values())

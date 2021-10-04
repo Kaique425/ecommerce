@@ -6,7 +6,8 @@ from .form import CartAddForm
 
 def cart (request):
     cart = Cart(request)
-    context = {'cart':cart,}
+    cart_len = len(cart)
+    context = {'cart':cart,'cart_len':cart_len}
 
     return render(request, 'cart/index.html', context)
 

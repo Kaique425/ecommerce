@@ -1,7 +1,5 @@
 import pytest
-
 from products.tests.factories import ProductFactory
-
 
 @pytest.fixture(autouse=True)
 def media_storage(settings, tmpdir):
@@ -10,3 +8,4 @@ def media_storage(settings, tmpdir):
 @pytest.fixture
 def product():
     return ProductFactory()
+
