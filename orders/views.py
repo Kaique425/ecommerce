@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from django.urls import resolve
+from django.urls import reverse
 from orders.forms import OrdersForm
 from django.views.generic import  CreateView
 from cart.cart import Cart
@@ -24,7 +24,7 @@ class OrderCreate(CreateView):
                 )
                 cart.clear()
             return render(self.request, 'orders/order_created.html')     
-        return HttpResponseRedirect(resolve('product:list'))
+        return HttpResponseRedirect(reverse('product:list'))
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

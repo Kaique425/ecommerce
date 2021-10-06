@@ -5,7 +5,7 @@ from orders.models import Item, Orders
 pytestmark = pytest.mark.django_db
 
 def test_create(product, order):
-    order = order()
+    order = order
     assert str(order) == f'Pedido {order.id}'
     assert order.__str__() == f'Pedido {order.id}'
 

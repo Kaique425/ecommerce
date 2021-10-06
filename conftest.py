@@ -1,4 +1,5 @@
 import pytest
+from orders.tests.factories import OrdersFactory
 from products.tests.factories import ProductFactory
 
 @pytest.fixture(autouse=True)
@@ -9,3 +10,6 @@ def media_storage(settings, tmpdir):
 def product():
     return ProductFactory()
 
+@pytest.fixture
+def order():
+    return OrdersFactory()
