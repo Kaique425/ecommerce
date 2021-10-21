@@ -2,6 +2,7 @@ from orders.models import Orders
 import factory
 from faker import Faker
 import faker.providers.address
+
 Faker.seed(0)
 faker = Faker(['pt_BR'])
 
