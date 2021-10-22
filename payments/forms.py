@@ -1,5 +1,7 @@
 from payments.models import Payment
+from django.conf import settings
 from django import forms
+import mercadopago
 
 
 class PaymentForm(forms.ModelForm):
@@ -14,9 +16,9 @@ class PaymentForm(forms.ModelForm):
             'email',
         ]
     
-    def __init__(self, *args, **kwargs):
-        self.order = kwargs.pop('orders')
-        super().__init__(*args, **kwargs)
+    #def __init__(self, *args, **kwargs):
+        #self.order = kwargs.pop('orders')
+        #super().__init__(*args, **kwargs)
 
     
     def transaction_amount_validation(self):
@@ -28,4 +30,7 @@ class PaymentForm(forms.ModelForm):
         return transaction_amount
 
 
-    
+    def save(self):
+        cd = self.cleaned_data 
+        mp = mercadopago.SDK(settings.MERCADO_PAGO_ACCESS_TOKEN)
+

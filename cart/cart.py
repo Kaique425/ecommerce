@@ -49,7 +49,9 @@ class Cart:
         if product_id in self.cart:
             del self.cart[product_id]
             self.save()
-            
+
+    def add_order_id(self, order):
+        self.cart['order_id'] = order.id
     
     def clear(self):
         del self.session['cart']

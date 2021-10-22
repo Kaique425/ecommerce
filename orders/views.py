@@ -22,7 +22,7 @@ class OrderCreate(CreateView):
                     price=item['price'],
                     quantity=item['quantity']
                 )
-                cart.clear()
+                cart.add_order_id(order)
             return render(self.request, 'payments/create.html')     
         return redirect(reverse('product:list'))
     
