@@ -54,4 +54,11 @@ class PaymentCreate(CreateView):
         context["PUBLIC_KEY"] = settings.MERCADO_PAGO_PUBLIC_KEY
         return context
 
+<<<<<<< HEAD
  
+=======
+    def form_valid(self, form):
+        form.save()
+
+        return super().form_valid(form)
+>>>>>>> Master
