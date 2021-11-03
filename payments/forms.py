@@ -16,9 +16,9 @@ class PaymentForm(forms.ModelForm):
             'email',
         ]
     
-    #def __init__(self, *args, **kwargs):
-        #self.order = kwargs.pop('orders')
-        #super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        self.order = kwargs.pop('order')
+        super(PaymentForm, self ).__init__(*args, **kwargs)
 
     
     def transaction_amount_validation(self):

@@ -12,11 +12,12 @@
     {% include "products/navbar.html" %}
     
     {% block content%}
+    {% csrf_token %}
     {% endblock %}   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
     <script>
-        const  mp = new MercadoPago('{{PUBLIC_KEY}}'); 
+        window.Mercadopago.setPublishableKey("{{PUBLIC_KEY}}");
     </script>
     <script src="{% static 'products/js/payment.js' %}">
     </script>

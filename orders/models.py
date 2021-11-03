@@ -20,16 +20,20 @@ class Orders(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ("-created",)
 
-    def __str__(self) -> str:
-        return f'Pedido {self.id}'
+    def __str__(self):
+        return f"Pedido {self.id}"
 
-    
     def get_total_price(self):
-        return sum(item.get_item_price() for item in self.item.all() )
+        total_cost = sum(item.get_total_price() for item in self.items.all())
+        return total_cost
 
     def get_description(self):
-        return ", ".join([f'{Item.quantity}x {Item.product.name}' for item in self.items.all()])
+        return ", ".join(
+            [f"{item.quantity}x {item.product.name}" for item in self.items.all()]
+        )
 
 
 class Item(models.Model):
