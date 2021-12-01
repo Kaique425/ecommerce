@@ -1,9 +1,9 @@
 {% extends 'products/main.html' %}
 
 {% block content %}
-    <form action="/payments/process_payment" method="post" id="paymentForm">
-        {% csrf_token %}
-        <h3>Detalhe do comprador</h3>
+<form action="." method="post" id="paymentForm">
+    {% csrf_token %}
+    <h3>Detalhe do comprador</h3>
         <div>
             <div>
             <label for="email">E-mail</label>
@@ -61,7 +61,7 @@
             <select type="text" id="installments" name="installments"></select>
             </div>
             <div>
-            <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
+            <input type="hidden" name="transactionAmount" id="transactionAmount" value="{{order.get_total_price}}" />
             <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
             <input type="hidden" name="description" id="description" />
             <br>

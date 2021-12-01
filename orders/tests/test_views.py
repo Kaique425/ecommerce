@@ -35,4 +35,3 @@ def test_order_create(client,product, order):
     )
 
     response = client.post(reverse("orders:create"), form , follow=True)
-    assertTemplateUsed(response, "orders/order_created.html")

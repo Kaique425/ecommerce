@@ -27,18 +27,17 @@ class Orders(models.Model):
         return f"Pedido {self.id}"
 
     def get_total_price(self):
-        total_cost = sum(item.get_total_price() for item in self.items.all())
+        total_cost = sum(item.get_item_price() for item in self.items.all())
         return total_cost
 
     def get_description(self):
         return ", ".join(
-            [f"{item.quantity}x {item.product.name}" for item in self.items.all()]
+            [f"{item.quantity}x {item.product.name}" for item in self.item.all()]
         )
 
-
 class Item(models.Model):
-    order = ForeignKey(Orders, related_name="Item", on_delete=models.CASCADE)
-    product = ForeignKey(Product, related_name="order_item", on_delete=models.CASCADE)
+    order = ForeignKey(Orders, related_name="items", on_delete=models.CASCADE)
+    product = ForeignKey(Product, related_name="order_items", on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10,decimal_places=2)
     quantity = models.PositiveIntegerField(
     validators= [

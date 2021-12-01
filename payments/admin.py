@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Payment
+from .models import PaymentModel
 
-@admin.register(Payment)
+@admin.register(PaymentModel)
 class PaymentsAdmin(admin.ModelAdmin):
     list_display = [
         '__str__',
+        'order',
         'transaction_amount',
         'installments',
         'payment_method_id',
@@ -17,3 +18,14 @@ class PaymentsAdmin(admin.ModelAdmin):
         'modified'
     ]
     list_filter = ['mercado_pago_status','modified']
+    readonly_fields = (
+         "email",
+        "doc_number",
+        "transaction_amount",
+        "installments",
+        "payment_method_id",
+        "mercado_pago_id",
+        "mercado_pago_status",
+        "mercado_pago_status_detail",
+        "modified",   
+    )

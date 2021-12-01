@@ -6,7 +6,6 @@ from cart.cart import Cart
 from orders.models import Orders, Item
 
 
-
 class OrderCreate(CreateView):
     model = Orders
     form_class = OrdersForm
@@ -24,7 +23,8 @@ class OrderCreate(CreateView):
                     price=item['price'],
                     quantity=item['quantity']
                 )
-            return redirect(reverse('payment:create'))     
+            cart.clear()
+            return redirect(reverse('payment:process_payment'))     
         return redirect(reverse('product:list'))
     
     def get_context_data(self, **kwargs):

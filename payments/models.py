@@ -3,7 +3,7 @@ from django.db.models.fields import EmailField
 from localflavor.br.models import BRCPFField
 from orders.models import Orders
 
-class Payment(models.Model):
+class PaymentModel(models.Model):
     order = models.ForeignKey(Orders, related_name='payments', on_delete= models.CASCADE)
     transaction_amount = models.DecimalField('Valor da transação', max_digits=10, decimal_places=2)
     installments = models.IntegerField("Parcelas")

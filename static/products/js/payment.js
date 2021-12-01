@@ -1,3 +1,14 @@
+var maskCPF = IMask(document.getElementById('docNumber'), {
+    mask: '000.000.000-00'
+})
+
+var maskCardNumber = IMask(document.getElementById('cardNumber'), {
+    mask: '0000000000000000'
+})
+
+
+
+
 window.Mercadopago.getIdentificationTypes();
 
 document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
@@ -77,6 +88,7 @@ document.getElementById('paymentForm').addEventListener('submit', getCardToken);
 function getCardToken(event){
    event.preventDefault();
    if(!doSubmit){
+       document.getElementById('docNumber').value = maskCPF.unmaskedValue
        let $form = document.getElementById('paymentForm');
        window.Mercadopago.createToken($form, setCardTokenAndPay);
        return false;
